@@ -30,7 +30,7 @@ function renderTitle(data) {
 function renderMap(data) {
   let template = $('#map-template').html();
   let container = $('#map');
-  data.key= localStorage.getItem('geocode');
+  data.key = localStorage.getItem('geocode');
   container.html( Mustache.render(template, data));
 }
 
