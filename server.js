@@ -2,6 +2,9 @@
 
 require('dotenv').config();
 const express = require('express');
+const pg = require('pg');
+const client = new pg.Client(process.env.DATABASE_URL);
+client.connect;
 const cors = require('cors');
 const PORT = process.env.PORT;
 const app = express();
@@ -59,13 +62,14 @@ function Location(city, data) {
 function handleRestaurants(request, reply){
   let listOfRestaurants = [];
 
-  let url = 'https://developers.zomato.com/api/v2.1/geocode'
+  let url = 'https://developers.zomato.com/api/v2.1/ ';
   let queryStringParams = {
+    key: process.env.ZOMATO_TOKEN,
     lat: request.query.latitude,
     lon: request.query.longitude,
   };
-}
-superagent.get(url)
+
+  superagent.get(url)
     .query(queryStringParams)
     .set('user-key', process.env.ZOMATO_TOKEN)
     .then( data => {
@@ -78,7 +82,7 @@ superagent.get(url)
       response.json(listOfRestaurants);
     });
 
-};
+}
 
 function Restaurant(data) {
   this.name = data.restaurant.name;
