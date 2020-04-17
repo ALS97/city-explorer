@@ -27,7 +27,6 @@ function handleLocation( request, response ) {
   // Use a library called 'superagent'
 
   let city = request.query.city.toLowerCase();
-
   if(locationCache[city]) {
     response.json( locationCache[city]);
     return;
@@ -43,6 +42,8 @@ function handleLocation( request, response ) {
   };
   // $.ajax(url)
   superagent.get(url)
+
+  
     .query(queryStringParams)
     .then( data => {
       let locationData = data.body[0];
